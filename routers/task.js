@@ -5,7 +5,7 @@ const auth = require("../middleware/auth");
 
 router.post("/task", auth, async (req, res) => {
 	try {
-		const task = new Task(req.body);
+		const task = new Task({ ...req.body, owner: req.user._id });
 		await task.save();
 		console.log(req.body);
 		res.status(201).send(task);
@@ -14,26 +14,30 @@ router.post("/task", auth, async (req, res) => {
 	}
 });
 
-router.get("/task", async (req, res) => {
+router.get("/tasks", auth, async (req, res) => {
 	try {
-		const tasks = await Task.find();
-		res.send(tasks);
+		const tasks = await Task.find({ owner: req.user._id });
+		// await req.user.populaate("tasks");
+		res.json({ tasks });
 	} catch (err) {
 		res.status(400).send();
 	}
 });
 
-router.get("/task/:id", async (req, res) => {
+router.get("/task/:id", auth, async (req, res) => {
 	const id = req.params.id;
 	try {
-		const task = await Task.findById(id);
-		res.send(task);
+		const task = await Task.findOne({ _id: id, owner: req.user._id });
+		if (!task) {
+			throw new Error("Not find task!");
+		}
+		res.json({ task });
 	} catch (err) {
 		res.status(404).send();
 	}
 });
 
-router.patch("/task/:id", async (req, res) => {
+router.patch("/task/:id", auth, async (req, res) => {
 	const updates = Object.keys(req.body);
 	const allowedUpdates = ["description", "completed"];
 	const isValidOperation = updates.every((update) =>
@@ -51,7 +55,7 @@ router.patch("/task/:id", async (req, res) => {
 
 	const id = req.params.id;
 	try {
-		const task = await Task.findById(id);
+		const task = await Task.findOne({ _id: id, owner: req.user._id });
 		task.description = req.body.description
 			? req.body.description
 			: task.description;
@@ -65,8 +69,22 @@ router.patch("/task/:id", async (req, res) => {
 			message: err.message,
 		});
 	}
+});
 
-	const task = Task.findById(id);
+router.delete("/tasks/:id", auth, async (req, res) => {
+	try {
+		const task = await Task.findOneAndDelete({
+			_id: req.params.id,
+			owner: req.user._id,
+		});
+
+		if (!task) {
+			return res.status(404).send();
+		}
+		res.json({ task });
+	} catch (err) {
+		res.status(500).json({ message: err.message });
+	}
 });
 
 module.exports = router;

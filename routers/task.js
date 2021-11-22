@@ -1,8 +1,9 @@
 const express = require("express");
 const router = new express.Router();
 const Task = require("../models/task");
+const auth = require("../middleware/auth");
 
-router.post("/task", async (req, res) => {
+router.post("/task", auth, async (req, res) => {
 	try {
 		const task = new Task(req.body);
 		await task.save();

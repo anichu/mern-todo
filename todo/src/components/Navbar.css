@@ -1,0 +1,32 @@
+.nav-box {
+	min-height: 10vh;
+	width: 100% !important;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #233d4d;
+	color: white;
+}
+.link-item {
+	display: flex;
+	align-items: center;
+}
+
+.link-item li {
+	margin: 0rem 1rem;
+}
+.link-item li a {
+	color: white;
+	transition: 0.3s ease-in-out;
+	padding: 0rem 0.5rem;
+	border-radius: 0.3rem;
+}
+
+.link-item li a:hover {
+	/* color: rgb(150, 26, 26); */
+	background-color: #1a3444;
+}
+
+.nav-h1 {
+	margin-left: 1rem;
+}

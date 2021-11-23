@@ -3,28 +3,21 @@ const router = new express.Router();
 const User = require("../models/user");
 const auth = require("../middleware/auth");
 
-router.post("/user", async (req, res) => {
+router.post("/signup", async (req, res) => {
 	const user = new User(req.body);
+	console.log(req.body);
 	try {
 		await user.save();
-		const token = user.generateAuthToken();
+		const token = await user.generateAuthToken();
 		res.status(201).json({
 			user,
 			token,
 		});
 	} catch (err) {
-		res.json(400).json({
-			message: err.message,
+		res.status(400).json({
+			error: err.message,
 		});
 	}
-	user
-		.save()
-		.then((re) => {
-			res.status(201).send(re);
-		})
-		.catch((err) => {
-			res.send(err);
-		});
 });
 
 router.post("/user/login", async (req, res) => {

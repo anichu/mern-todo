@@ -7,20 +7,25 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Signup from "./components/Signup";
 import Addtodo from "./components/Addtodo";
+import Logout from "./components/Logout";
+import { TodoContext } from "./context/auth";
 
 function App() {
 	return (
 		<BrowserRouter>
-			<div className="app">
-				<Navbar />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route exact path="/login" element={<Login />} />
-					<Route exact path="/signup" element={<Signup />} />
-					<Route exact path="/addtodo" element={<Addtodo />} />
-				</Routes>
-				<Footer />
-			</div>
+			<TodoContext>
+				<div className="app">
+					<Navbar />
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route exact path="/login" element={<Login />} />
+						<Route exact path="/signup" element={<Signup />} />
+						<Route exact path="/addtodo" element={<Addtodo />} />
+						<Route exact path="/logout" element={<Logout />} />
+					</Routes>
+					<Footer />
+				</div>
+			</TodoContext>
 		</BrowserRouter>
 	);
 }

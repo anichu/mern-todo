@@ -12,8 +12,11 @@
 } */
 body {
 	font-size: 62.5%;
+	overflow-x: hidden;
 }
-
+div {
+	font-size: 1.2rem;
+}
 p,
 label {
 	font-size: 1.6rem;
@@ -49,4 +52,65 @@ h5 {
 }
 h6 {
 	font-size: 1.6rem;
+}
+
+.task-box {
+	width: 50rem;
+	margin: auto;
+}
+.task-box-1 {
+	margin-top: 0.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.task-img-box {
+	width: 100%;
+	min-height: 85vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.select-box {
+	width: 50rem;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+}
+
+.select-box select {
+	appearance: none;
+	background-color: transparent;
+	border: none;
+	padding: 0rem 1rem;
+	margin: 0;
+	width: 100%;
+	font-family: inherit;
+	font-size: 1.8rem;
+	cursor: pointer;
+	line-height: 2rem;
+	outline: none;
+}
+
+.edit-icon i,
+.delete-icon i {
+	font-size: 1rem;
+	cursor: pointer;
+	color: red;
+	margin-left: 0.3rem;
+	transition: 0.2s ease-in;
+}
+
+.delete-icon i:hover {
+	color: brown;
+}
+
+.edit-icon i {
+	color: green;
+}
+
+.edit-icon i:hover {
+	color: rgb(8, 105, 8);
 }

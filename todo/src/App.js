@@ -9,6 +9,7 @@ import Signup from "./components/Signup";
 import Addtodo from "./components/Addtodo";
 import Logout from "./components/Logout";
 import { TodoContext } from "./context/auth";
+import Edittodo from "./components/Edittodo";
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 						<Route exact path="/signup" element={<Signup />} />
 						<Route exact path="/addtodo" element={<Addtodo />} />
 						<Route exact path="/logout" element={<Logout />} />
+						<Route exact path="/edittodo" element={<Edittodo />} />
 					</Routes>
 					<Footer />
 				</div>

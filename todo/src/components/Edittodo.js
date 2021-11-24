@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./Login.css";
 
-const Addtodo = () => {
+const Edittodo = () => {
 	const [check, setCheck] = useState(false);
 	const [text, setText] = useState("");
 	const Navigate = useNavigate();
@@ -30,7 +30,7 @@ const Addtodo = () => {
 	};
 	return (
 		<div className="form-box">
-			<h1>Addtodo</h1>
+			<h1>Edittodo</h1>
 			<form action="" onSubmit={addHandler}>
 				<label htmlFor="">Task:</label>
 				<input
@@ -50,4 +50,4 @@ const Addtodo = () => {
 	);
 };
 
-export default Addtodo;
+export default Edittodo;

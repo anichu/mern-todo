@@ -23,7 +23,7 @@ function App() {
 						<Route exact path="/signup" element={<Signup />} />
 						<Route exact path="/addtodo" element={<Addtodo />} />
 						<Route exact path="/logout" element={<Logout />} />
-						<Route exact path="/edittodo" element={<Edittodo />} />
+						<Route exact path="/edittodo/:id" element={<Edittodo />} />
 					</Routes>
 					<Footer />
 				</div>

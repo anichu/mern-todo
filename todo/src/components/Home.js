@@ -49,7 +49,7 @@ const Home = () => {
 		setSelectTask(e.target.value);
 	};
 	const deleteHandler = async (id) => {
-		console.log(id);
+		// console.log(id);
 		const response = await fetch(`http://localhost:8000/tasks/${id}`, {
 			method: "DELETE",
 			headers: {
@@ -59,7 +59,7 @@ const Home = () => {
 		});
 
 		const data = await response.json();
-		console.log(data);
+		// console.log(data);
 		if (response.ok) {
 			setTask([...data.tasks]);
 		}
@@ -101,9 +101,9 @@ const Home = () => {
 										>
 											<i className="fas fa-trash" title="delete"></i>
 										</span>
-										<span className="edit-icon">
+										<Link to={`edittodo/${t._id}`} className="edit-icon">
 											<i class="fas fa-edit"></i>
-										</span>
+										</Link>
 									</>
 								)}
 								{selectTask === "completed" && t.completed && (
@@ -121,7 +121,7 @@ const Home = () => {
 										>
 											<i className="fas fa-trash" title="delete"></i>
 										</span>
-										<Link to="edittodo" className="edit-icon">
+										<Link to={`edittodo/${t._id}`} className="edit-icon">
 											<i class="fas fa-edit"></i>
 										</Link>
 									</>

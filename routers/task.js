@@ -7,7 +7,7 @@ router.post("/task", auth, async (req, res) => {
 	try {
 		const task = new Task({ ...req.body, owner: req.user._id });
 		await task.save();
-		console.log(req.body);
+		// console.log(req.body);
 		res.status(201).send(task);
 	} catch (err) {
 		res.status(400).send();
@@ -38,8 +38,8 @@ router.get("/task/:id", auth, async (req, res) => {
 });
 
 router.patch("/task/:id", auth, async (req, res) => {
-	console.log(req.body);
-	console.log(typeof req.body.completed);
+	// console.log(req.body);
+	// console.log(typeof req.body.completed);
 	const updates = Object.keys(req.body);
 	const allowedUpdates = ["description", "completed"];
 	const isValidOperation = updates.every((update) =>

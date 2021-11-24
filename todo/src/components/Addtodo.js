@@ -26,7 +26,7 @@ const Addtodo = () => {
 		if (response.ok) {
 			Navigate("/");
 		}
-		console.log(data);
+		// console.log(data);
 	};
 	return (
 		<div className="form-box">
